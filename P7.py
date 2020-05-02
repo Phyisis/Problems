@@ -10,11 +10,6 @@ max = 10001
 n = 3
 primes = [2]
 
-def gcd(a, b):
-    while b:      
-        a, b = b, a % b
-    return a
-
 def CheckPrime(num):
     rootn = math.floor(num**(.5))
     for i in primes:
