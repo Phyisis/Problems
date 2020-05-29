@@ -1,5 +1,8 @@
-import math
-baseExpPairsFile = open("p099_base_exp.txt", "r")
+import math, os
+
+dirname = os.path.dirname(__file__)
+filename = os.path.join(dirname, "bin", "p099_base_exp.txt")
+baseExpPairsFile = open(filename, "r")
 
 pairs = [[int(n) for n in line.split(",")] for line in baseExpPairsFile]
 largest = 0

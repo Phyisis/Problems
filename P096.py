@@ -1,4 +1,7 @@
-puzzleFile = list(open("p096_sudoku.txt", "r"))
+import os
+dirname = os.path.dirname(__file__)
+filename = os.path.join(dirname, "bin", "p096_sudoku.txt")
+puzzleFile = list(open(filename, "r"))
 groups = [[puzzleFile[i] for i in range(1+10*k,10+10*k)] for k in range(50)]
 puzzles = [[[int(d) for d in row.rstrip()] for row in group ] for group in groups]
 

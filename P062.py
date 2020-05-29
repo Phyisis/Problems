@@ -2,7 +2,7 @@
 cubes = {"1":[1,1]}
 
 def search():
-    i = 1
+    i = 2
     while True:
         nextCube = ''.join(sorted(str(i**3)))
         if nextCube in cubes:

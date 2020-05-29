@@ -1,9 +1,7 @@
 import numpy as np
-import random
+import random, math, string, os
 from fractions import gcd
 from functools import reduce
-import math
-import string
 
 def getScore(name):
     score = len(name) 
@@ -11,7 +9,9 @@ def getScore(name):
         score += string.ascii_uppercase.index(letter)
     return score
 
-namesFile = open("p022_names.txt", "r")
+dirname = os.path.dirname(__file__)
+filename = os.path.join(dirname, "bin", "p022_names.txt")
+namesFile = open(filename, "r")
 names = []
 
 for line in namesFile:

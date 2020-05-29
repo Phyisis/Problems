@@ -1,15 +1,10 @@
-import math
+def factorize(n):
+    pf = []
+    for i in range(3,int(n**(.5)),2):
+        while n % i == 0:
+            pf.append(i)
+            n //= i
+    return pf
 
-n = 600851475143
-
-min = 3
-max = math.floor(n**(.5))
-
-while (n > 1):
-        for i in range(min,max,2):
-                if n % i == 0:
-                        print(i)
-                        n = n/i
-
-
-
+num = 600851475143
+print(factorize(num))
