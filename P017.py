@@ -1,12 +1,5 @@
-import numpy as np
-import random
-from fractions import gcd
-from functools import reduce
-import math
-
-min = 1
-max = 1000
-sum = 0
+from helpers import analytics
+analytics.monitor()
 
 def f(x):
     return {
@@ -45,7 +38,7 @@ def GetLetters(num):
     if (num >= 1000):
         letters += len('onethousand')
     if (num >= 100 and num < 1000):
-        letters += f(str(math.floor(num/100.0)))
+        letters += f(str(num//100))
         letters += len('hundred')
     if (num >= 100 and num % 100 != 0 and num < 1000):
         letters += len('and')
@@ -56,14 +49,13 @@ def GetLetters(num):
         letters += f(str(num % 10))
     return letters
     
+def main(limit):
+    total = 0
+    for i in range(1,limit+1):
+        total += GetLetters(i)
+    return total
 
-for i in range(min,max+1):
-    sum += GetLetters(i)
-
-print(sum)
-
-
-
+print(main(1000), analytics.lap(), analytics.maxMem())
 
 
 

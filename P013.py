@@ -1,9 +1,5 @@
-import numpy as np
-import random
-from fractions import gcd
-from functools import reduce
-import math
-
+from helpers import analytics
+analytics.monitor()
 
 numbers = [ 37107287533902102798797998220837590246510135740250,
             46376937677490009712648124896970078050417018260538,
@@ -106,16 +102,4 @@ numbers = [ 37107287533902102798797998220837590246510135740250,
             20849603980134001723930671666823555245252804609722,
             53503534226472524250874054075591789781264330331690 ]
 
-sum = 0
-
-for i in range(0,len(numbers)):
-    sum += numbers[i]
-
-print(sum)
-
-
-
-
-
-
-
+print(sum(numbers), analytics.lap(), analytics.maxMem())

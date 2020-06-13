@@ -1,8 +1,5 @@
-import numpy as np
-import random
-from fractions import gcd
-from functools import reduce
-import math
+from helpers import analytics
+analytics.monitor()
 
 n = 1
 min = 1901
@@ -31,8 +28,4 @@ for y in range(min,max+1):
                 sundays += 1
             n = (n + 1) % 7
 
-print(sundays) 
-            
-
-
-
+print(sundays, analytics.lap(), analytics.maxMem())

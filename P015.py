@@ -1,8 +1,5 @@
-import numpy as np
-import random
-from fractions import gcd
-from functools import reduce
-import math
+from helpers import analytics
+analytics.monitor()
 
 w, h = 20, 20
 paths = 0
@@ -22,15 +19,4 @@ def GetPaths(x,y):
     grid[x][y] = a + b
     return a + b
 
-paths = GetPaths(w,h)
-print(paths)
-for i in range(h):
-    print(grid[i])
-
-
-
-
-
-
-
-
+print(GetPaths(w,h), analytics.lap(), analytics.maxMem())

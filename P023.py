@@ -7,7 +7,7 @@ import math
 def GetDivisorsSum(num):
     i = 2
     dsum = 1
-    limit = math.floor(math.sqrt(num))
+    limit = int(num**0.5)
     while i <= limit:
         if (num % i == 0):
             if i != num/i:

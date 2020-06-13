@@ -1,20 +1,12 @@
-import numpy as np
-import random
-from fractions import gcd
-from functools import reduce
-import math
+from helpers import analytics
+analytics.monitor()
 
-b = 2
-p = 1000
-result = b**p
-sum = 0
+def main():
+    b = 2
+    p = 1000
+    return sum(int(d) for d in str(b**p))
 
-for i in range(0,len(str(result))):
-    sum += int(str(result)[i])
-
-print(sum)
-
-
+print(main(), analytics.lap(), analytics.maxMem())
 
 
 

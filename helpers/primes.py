@@ -1,4 +1,20 @@
 from itertools import compress
+from functools import lru_cache
+
+def initialize(limit):
+    """ Initialize prime list from other modules """
+    global primeslist
+    primeslist = primes(int(limit**0.5)+1)
+
+def isPrime(n):
+    """ Test if single number is prime """
+    if n <= 1:
+        return False
+    sqrt = int(n**0.5)
+    for i in range(2, sqrt + 1):
+        if n % i == 0:
+            return False
+    return True
 
 def primes(n):
     """ Returns  a list of primes < n for n > 2 """
@@ -29,6 +45,7 @@ def divisors(n):
     return divs
 
 def totients(n):
+    """ Returns list of totients, from totient(0) to totient(n) """
     phi = [i for i in range(n+2)]
     for p in phi[2:]:
         if phi[p] == p:
@@ -37,5 +54,19 @@ def totients(n):
                 phi[i] = (phi[i] // p) * (p - 1)
     return phi
 
-n = int(1e12)
-primeslist = primes(int(n**0.5)+1)
+def partition(n,I=1):
+    """ Returns partitions of the integer n """
+    yield (n,)
+    for i in range(I, n//2+1):
+        for p in partition(n-i,i):
+            yield (i,) + p
+
+def partitionCount(n):
+    ways = [1] + [0] * n
+    nums = [c for c in range(1,n)]
+    for num in nums:
+        for i in range(num,n+1):
+            ways[i] += ways[i-num]
+    return ways[n] + 1
+
+primeslist = None

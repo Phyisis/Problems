@@ -1,11 +1,9 @@
-import numpy as np
-import random
-from fractions import gcd
-import math
+from helpers import analytics
+analytics.monitor()
 
 
-min = 900
-max = 999
+n_min = 900
+n_max = 999
 
 def Palindrome(n):
         temp = str(n)
@@ -14,10 +12,12 @@ def Palindrome(n):
                         return False
         return True
 
-for i in range(max,min,-1):
-        for j in range(max,min,-1):
-                if Palindrome(i*j):
-                        print(i*j)
+def main():
+    for i in range(n_max,n_min,-1):
+            for j in range(n_max,n_min,-1):
+                    if Palindrome(i*j):
+                            print(i*j)
 
 
+print(main(), analytics.lap(), analytics.maxMem())
 

@@ -1,11 +1,5 @@
-import numpy as np
-import random
-from fractions import gcd
-from functools import reduce
-import math
-
-n = 1000
-max = math.floor(n**(.5))
+from helpers import analytics
+analytics.monitor()
 
 def GetTriple(u,v):
     a = u**2 - v**2
@@ -13,17 +7,18 @@ def GetTriple(u,v):
     c = u**2 + v**2
     return [a,b,c]
 
-for i in range(1,max):
-    for j in range(1,max):
-        trip = GetTriple(i,j)
-        if ((trip[0] + trip[1] + trip[2]) == 1000):
-            print(trip[0])
-            print(trip[1])
-            print(trip[2])
-            print(trip[0] * trip[1] * trip[2])
-        
+def main(n):
+    rootn = int(n**0.5)
+    for i in range(1,rootn):
+        for j in range(1,rootn):
+            trip = GetTriple(i,j)
+            if ((trip[0] + trip[1] + trip[2]) == 1000):
+                print(trip[0])
+                print(trip[1])
+                print(trip[2])
+                print(trip[0] * trip[1] * trip[2])
 
-
+print(main(1000), analytics.lap(), analytics.maxMem())
 
 
 

@@ -1,8 +1,5 @@
-import numpy as np
-import random
-from fractions import gcd
-from functools import reduce
-import math
+from helpers import analytics
+analytics.monitor()
 
 pyramid = [ [75],
             [95, 64],
@@ -20,15 +17,16 @@ pyramid = [ [75],
             [63, 66, 4, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31],
             [4, 62, 98, 27, 23, 9, 70, 98, 73, 93, 38, 53, 60, 4, 23] ]
 
-for y in range(len(pyramid)-2,-1,-1):
-    for x in range(len(pyramid[y])):
-        if (pyramid[y+1][x] >= pyramid[y+1][x+1]):
-            pyramid[y][x] = pyramid[y+1][x] + pyramid[y][x]
-        if (pyramid[y+1][x+1] > pyramid[y+1][x]):
-            pyramid[y][x] = pyramid[y+1][x+1] + pyramid[y][x]
+def main():
+    for y in range(len(pyramid)-2,-1,-1):
+        for x in range(len(pyramid[y])):
+            if (pyramid[y+1][x] >= pyramid[y+1][x+1]):
+                pyramid[y][x] = pyramid[y+1][x] + pyramid[y][x]
+            if (pyramid[y+1][x+1] > pyramid[y+1][x]):
+                pyramid[y][x] = pyramid[y+1][x+1] + pyramid[y][x]
+    return pyramid[0][0]
 
-print(pyramid[0][0])
 
-
+print(main(), analytics.lap(), analytics.maxMem())
 
 

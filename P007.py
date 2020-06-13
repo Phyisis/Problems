@@ -1,13 +1,7 @@
-import numpy as np
-import random
-from fractions import gcd
-from functools import reduce
+from helpers import analytics
+analytics.monitor()
 import math
 
-
-min = 2
-max = 10001
-n = 3
 primes = [2]
 
 def CheckPrime(num):
@@ -19,13 +13,15 @@ def CheckPrime(num):
             return False
     return True
 
-while (len(primes) < max):
-    if CheckPrime(n):
-        primes.append(n)
-    n += 2
+def main(limit):
+    n=3
+    while (len(primes) < limit):
+        if CheckPrime(n):
+            primes.append(n)
+        n += 2
+    return primes[-1]
 
-print(primes)
-
+print(main(10001), analytics.lap(), analytics.maxMem())
 
 
 

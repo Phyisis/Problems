@@ -1,19 +1,11 @@
-import numpy as np
-import random
-from fractions import gcd
-from functools import reduce
-import math
+from helpers import analytics
+analytics.monitor()
 
 
-min = 2
-max = 500
-nt = 1
-tnum = 0
-maxDivisors = 0
 
 def GetNumDivisors(num):
     divisors = 0
-    rootn = math.floor(num**(.5))
+    rootn = int(num**(.5))
     for i in range(2,rootn):
         if (num % i == 0):
             divisors += 2
@@ -21,15 +13,12 @@ def GetNumDivisors(num):
             divisors -= 1
     return divisors
 
-while (GetNumDivisors(tnum) < max):
-    tnum += nt
-    nt += 1
+def main(limit):
+    nt = 1
+    tnum = 0
+    while (GetNumDivisors(tnum) < limit):
+        tnum += nt
+        nt += 1
+    return tnum
 
-print(tnum)
-
-
-
-
-
-
-
+print(main(500), analytics.lap(), analytics.maxMem())

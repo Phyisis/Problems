@@ -1,8 +1,5 @@
-import numpy as np
-import random
-from fractions import gcd
-from functools import reduce
-import math
+from helpers import analytics
+analytics.monitor()
 
 n = ("73167176531330624919225119674426574742355349194934"
     "96983520312774506326239578318016984801869478851843"
@@ -24,25 +21,25 @@ n = ("73167176531330624919225119674426574742355349194934"
     "84580156166097919133875499200524063689912560717606"
     "05886116467109405077541002256983155200055935729725"
     "71636269561882670428252483600823257530420752963450")
-product = 0
-step = 13
 
-def ProductAt(index):
+def main():
+    product = 0
+    step = 13
+    i = 0
+    while(i+step < len(n)):
+        temp = ProductAt(i,step)
+        if(temp > product):
+            product = temp
+        i += 1
+    return product
+
+def ProductAt(i,step):
     temp = 1
     for j in range(0,step):
         temp *= int(n[i+j])
     return temp
 
-i = 0
-while(i+step < len(n)):
-    temp = ProductAt(i)
-    if(temp > product):
-        product = temp
-    i += 1
-        
-print(product)
-
-
+print(main(), analytics.lap(), analytics.maxMem())
 
 
 

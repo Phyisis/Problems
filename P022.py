@@ -1,7 +1,6 @@
-import numpy as np
-import random, math, string, os
-from fractions import gcd
-from functools import reduce
+import os, string
+from helpers import analytics
+analytics.monitor()
 
 def getScore(name):
     score = len(name) 
@@ -18,10 +17,11 @@ for line in namesFile:
     names += [name.strip('"') for name in line.split(",")]
 
 names.sort()
-total = 0
 
-for i in range(len(names)):
-    total += getScore(names[i])*(i+1)   
+def main():
+    total = 0
+    for i in range(len(names)):
+        total += getScore(names[i])*(i+1)   
+    return total 
 
-print(total) 
-
+print(main(), analytics.lap(), analytics.maxMem())
