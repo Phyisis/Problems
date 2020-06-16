@@ -1,14 +1,6 @@
-import primes, time
 from itertools import combinations
-start = time.perf_counter()
-step = start
-
-def lap():
-    global step
-    now = time.perf_counter()
-    diff = now - step
-    step = now
-    return diff
+from helpers import analytics,primes
+analytics.monitor()
 
 primesList = list(map(str,primes.primes(int(1e6))))
 digits = list(map(str,range(10)))
@@ -43,4 +35,7 @@ def lowestPrime(k):
         if k.replace("*",d) in primesList:
             return k.replace("*",d)
 
-print(countkeys(8), "time:", lap())
+def main():
+    return countkeys(8)
+
+print(main(), analytics.lap(), analytics.maxMem())

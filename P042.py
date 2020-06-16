@@ -1,3 +1,5 @@
+from helpers import analytics
+analytics.monitor()
 import os, string
 
 dirname = os.path.dirname(__file__)
@@ -16,9 +18,11 @@ def getScore(word):
         score += string.ascii_uppercase.index(letter)+1
     return score
 
-total = 0
-for word in words:
-    if getScore(word) in tNums:
-        total += 1
+def main():
+    total = 0
+    for word in words:
+        if getScore(word) in tNums:
+            total += 1
+    return total
 
-print(total)
+print(main(), analytics.lap(), analytics.maxMem())

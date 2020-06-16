@@ -1,3 +1,5 @@
+from helpers import analytics
+analytics.monitor()
 from itertools import combinations,permutations
 
 def isPandigital(a,b,c):
@@ -5,18 +7,16 @@ def isPandigital(a,b,c):
         return True
     return False
 
-digits = [1,2,3,4,5,6,7,8,9]
-fourDigits = [int(''.join(map(str, s))) for s in permutations(digits,4)]
-fiveDigits = [int(''.join(map(str, s))) for s in permutations(digits,5)]
-numbers = fourDigits + fiveDigits
+def main():
+    digits = [1,2,3,4,5,6,7,8,9]
+    fourDigits = [int(''.join(map(str, s))) for s in permutations(digits,4)]
+    fiveDigits = [int(''.join(map(str, s))) for s in permutations(digits,5)]
+    numbers = fourDigits + fiveDigits
+    results = []
+    for a in numbers:
+        for b in range(1,1000):
+            if a % b == 0 and isPandigital(a,b,a//b) and a not in results:
+                results.append(a)
+    return sum(results)
 
-results = []
-
-for a in numbers:
-    for b in range(1,1000):
-        if a % b == 0 and isPandigital(a,b,a//b) and a not in results:
-            results.append(a)
-
-
-print(results)
-print(sum(results))
+print(main(), analytics.lap(), analytics.maxMem())

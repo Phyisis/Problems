@@ -1,4 +1,7 @@
 import os
+from helpers import analytics
+analytics.monitor()
+
 dirname = os.path.dirname(__file__)
 filename = os.path.join(dirname, "bin", "p096_sudoku.txt")
 puzzleFile = list(open(filename, "r"))
@@ -70,10 +73,11 @@ def find_empty(bo):
 
     return None
 
-total = 0
+def main():
+    total = 0
+    for p in puzzles:
+        solve(p)
+        total += 100*p[0][0]+10*p[0][1]+p[0][2]
+    return total
 
-for p in puzzles:
-    solve(p)
-    total += 100*p[0][0]+10*p[0][1]+p[0][2]
-
-print(total)
+print(main(), analytics.lap(), analytics.maxMem())

@@ -1,3 +1,6 @@
+from helpers import analytics
+analytics.monitor()
+
 def pythagoreanTriplets(limit):
     triplets = {}
     c, m = 0, 2
@@ -14,15 +17,18 @@ def pythagoreanTriplets(limit):
         m += 1
     return triplets
 
-triplets = pythagoreanTriplets(int(1e3))
-solution = [0,0]
-for i in range(1,1001):
-    num = 0
-    for p in triplets.values():
-        if i==p:
-            num += 1
-    if num > solution[1]:
-        solution[1] = num
-        solution[0] = i
-print(solution)
+def main():
+    triplets = pythagoreanTriplets(int(1e3))
+    solution = [0,0]
+    for i in range(1,1001):
+        num = 0
+        for p in triplets.values():
+            if i==p:
+                num += 1
+        if num > solution[1]:
+            solution[1] = num
+            solution[0] = i
+    return solution[0]
+
+print(main(), analytics.lap(), analytics.maxMem())
 

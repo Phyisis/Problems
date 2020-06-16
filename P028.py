@@ -1,3 +1,5 @@
+from helpers import analytics
+analytics.monitor()
 """
 43 44 45 46 47 48 49
 42 21 22 23 24 25 26
@@ -17,4 +19,7 @@ def sumOfDiagonals(n):
         total += box(i)
     return total
 
-print(sumOfDiagonals(500))
+def main():
+    return sumOfDiagonals(500)
+
+print(main(), analytics.lap(), analytics.maxMem())

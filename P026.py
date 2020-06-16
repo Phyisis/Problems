@@ -1,3 +1,6 @@
+from helpers import analytics
+analytics.monitor()
+
 def getDecimalLength(a,b):
     k = 0
     u = a % b
@@ -23,19 +26,20 @@ def getDecimalLength(a,b):
 def S(r,b):
     return (10*r) % b
 
-num = 0
-longest = 0
-for i in range(7,1000):
-    while i % 2 == 0:
-        i /= 2
-    while i % 5 == 0:
-        i /= 5
-    if i == 1: continue
-    p,q = getDecimalLength(1,i)
-    if p > longest:
-        print("1/"+str(i)+":",(p,q))
-        longest = p
-        num = i
+def main():
+    num = 0
+    longest = 0
+    for i in range(7,1000):
+        while i % 2 == 0:
+            i /= 2
+        while i % 5 == 0:
+            i /= 5
+        if i == 1: continue
+        p,q = getDecimalLength(1,i)
+        if p > longest:
+            #print("1/"+str(i)+":",(p,q))
+            longest = p
+            num = i
+    return num
 
-print("num:",num)
-print("period:",longest)
+print(main(), analytics.lap(), analytics.maxMem())

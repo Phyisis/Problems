@@ -1,4 +1,5 @@
-import primes
+from helpers import analytics, primes
+analytics.monitor()
 
 limit = int(1e4)
 pu = primes.primes(limit)
@@ -10,6 +11,6 @@ def main(limit):
         for s in sq:
             ns.discard(p)
             ns.discard(p+2*s)
-    return(min(ns))
+    return min(ns)
 
-print(main(limit))
+print(main(limit), analytics.lap(), analytics.maxMem())

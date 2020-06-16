@@ -1,4 +1,6 @@
 import math
+from helpers import analytics
+analytics.monitor()
 
 # t total discs
 # b blue discs
@@ -6,7 +8,9 @@ import math
 # (b**2-b) = (t**2-t)/2
 # sqrt(2)/2 = 0.7071067811865
 
-def search():
+limit = int(1e12)
+
+def main():
     p = 1
     t = 1
     while True: # search values of t
@@ -17,7 +21,9 @@ def search():
         while True: # search values of b
             b2 = 2*(b**2-b)
             if b2 == t2:
-                print((b,t))
+                if t > limit:
+                    return b
+                #print((b,t))
                 t,p = math.ceil((t*t)/p),t
                 break
             elif b2 < t2:
@@ -30,4 +36,4 @@ def search():
                 break
         t += 1
 
-search()
+print(main(), analytics.lap(), analytics.maxMem())

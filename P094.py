@@ -1,6 +1,8 @@
 #using Pell's equation
+from helpers import analytics
+analytics.monitor()
 
-def search():  
+def main():  
     limit = int(1e9)
     offset = [-1,1]
     x = 2
@@ -11,11 +13,9 @@ def search():
             p = 2 * x + b
             areaX3 = y * (x + 2*b)
             if (p > limit): 
-                return result
-        
+                return result        
             if (p > 0 and areaX3 > 0 and p % 3 == 0 and areaX3 % 3 == 0):
-                result += p + b
-        
+                result += p + b        
         x,y = (2 * x + y * 3, y * 2 + x)
 
-print(search())
+print(main(), analytics.lap(), analytics.maxMem())

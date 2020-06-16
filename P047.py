@@ -1,4 +1,5 @@
-import primes
+from helpers import analytics, primes
+analytics.monitor()
 
 def main(target):
     i = 1
@@ -16,4 +17,4 @@ def main(target):
         else:
             run = 0
 
-print(main(4))
+print(main(4), analytics.lap(), analytics.maxMem())

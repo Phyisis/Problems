@@ -1,6 +1,7 @@
 from decimal import Decimal,getcontext
 import math
-from lap import lap
+from helpers import analytics
+analytics.monitor()
 
 getcontext().prec = 110
 
@@ -15,6 +16,6 @@ def isirrational(n):
 def main():
     return sum(map(digitSum,filter(isirrational,range(1,101))))
 
-print(main(),"time:",lap())
+print(main(), analytics.lap(), analytics.maxMem())
 
 # 40886 time: 0.00285

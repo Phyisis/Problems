@@ -1,9 +1,11 @@
 from itertools import permutations
+from helpers import analytics
+analytics.monitor()
 
-digits = "0123456789"
+def main():
+    digits = "0123456789"
+    perms = ["".join(s) for s in permutations(digits)]
+    perms.sort()
+    return perms[999999]
 
-perms = ["".join(s) for s in permutations(digits)]
-
-perms.sort()
-print(perms[0])
-print(perms[999999])
+print(main(), analytics.lap(), analytics.maxMem())

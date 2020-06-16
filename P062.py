@@ -1,4 +1,7 @@
 #Find the smallest cube for which exactly five permutations of its digits are cube.
+from helpers import analytics
+analytics.monitor()
+
 cubes = {"1":[1,1]}
 
 def search():
@@ -14,6 +17,7 @@ def search():
             cubes[nextCube] = [1,i]
         i += 1
 
-result = search()
-print(result)
-print(result[1]**3)
+def main():
+    return search()[1]**3
+
+print(main(), analytics.lap(), analytics.maxMem())

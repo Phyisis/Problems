@@ -1,4 +1,5 @@
-import primes
+from helpers import analytics,primes
+analytics.monitor()
 
 limit = int(1e6)
 pu = set(primes.primes(limit))
@@ -13,4 +14,4 @@ def circular(p):
 def main():
     return len(list(filter(circular, pu)))
 
-print(main())
+print(main(), analytics.lap(), analytics.maxMem())
