@@ -1,6 +1,5 @@
 from helpers import analytics
 analytics.monitor()
-print(main(), analytics.lap(), analytics.maxMem())
 
 def main():
     total = 0
