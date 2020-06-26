@@ -15,7 +15,7 @@ limit = 12000
 v_min = {k:2*k for k in range(1,limit+1)}
 
 def prodsum(n=2, p=1, s=1, c=1):
-    k = p - s + c     # product - sum + number of factors
+    k = p - s + c
     if k < limit:
         v_min[k] = min(p,v_min[k])
         for i in range(n, limit//p*2 + 1):
@@ -26,4 +26,3 @@ def main(limit):
     return sum(set(v_min[k] for k in range(2,limit)))
 
 print(main(limit), analytics.lap(), analytics.maxMem())
-# 7587457

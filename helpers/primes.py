@@ -5,6 +5,7 @@ def initialize(limit):
     """ Initialize prime list from other modules """
     global primeslist
     primeslist = primes(int(limit**0.5)+1)
+    return primeslist
 
 def isPrime(n):
     """ Test if single number is prime """
@@ -37,11 +38,11 @@ def factorization(n):
     if n > 1: pf.append((n, 1))
     return pf
 
-def divisors(n):
-    """ Returns an unsorted list of the divisors of n """
+def divisors(n,power=1):
+    """ Returns an unsorted list of the divisors of n**power """
     divs = [1]
     for p, e in factorization(n):
-        divs += [x*p**k for k in range(1,e+1) for x in divs]
+        divs += [x*p**k for k in range(1,power*e+1) for x in divs]
     return divs
 
 def totients(n):
