@@ -1,5 +1,8 @@
 from itertools import compress
 from functools import lru_cache
+from math import log
+
+primeslist = None
 
 def initialize(limit):
     """ Initialize prime list from other modules """
@@ -9,13 +12,14 @@ def initialize(limit):
 
 def isPrime(n):
     """ Test if single number is prime """
-    if n <= 1:
+    if n < 2:
         return False
-    sqrt = int(n**0.5)
-    for i in range(2, sqrt + 1):
-        if n % i == 0:
+    for p in primeslist:
+        if p*p > n:
+            return True
+        if n % p == 0:
             return False
-    return True
+    print("didn't generate enough primes to verify primality of ",n)
 
 def primes(n):
     """ Returns  a list of primes < n for n > 2 """
@@ -70,4 +74,48 @@ def partitionCount(n):
             ways[i] += ways[i-num]
     return ways[n] + 1
 
-primeslist = None
+def millerRabin(n):
+    if n&0: return False
+    r,d = 0,n-1
+    while d&0:
+        d >>= 1
+        r += 1 
+    for a in testSet(n):
+        x = pow(a,d,n)
+        if x == 1 or x == n - 1:
+            continue
+        c = True
+        for _ in range(r-1):
+            x = pow(x,2,n)
+            if x == n - 1:
+                c = False
+                break
+        if c:
+            return False
+    return True
+
+def testSet(n):
+    if n < testKeys[-1]:
+        i = 0
+        while testKeys[i] < n:
+            i += 1
+        return testSets[testKeys[i]]
+    t = log(n)*log(log(log(n)))
+    return primes(int(t))
+
+testSets = {
+    2046:[2],
+    1373652:[2,3],
+    9080190:[31,73],
+    25326000:[2,3,5],
+    3215031750:[2,3,5,7],
+    4759123140:[2,7,61],
+    1122004669632:[2,13,23,1662803],
+    2152302898746:[2,3,5,7,11],
+    3474749660382:[2,3,5,7,11,13],
+    341550071728320:[2,3,5,7,11,13,17],
+    3825123056546413050:[2,3,5,7,11,13,17,19,23],
+    318665857834031151167460:[2,3,5,7,11,13,17,19,23,29,31,37],
+    3317044064679887385961980:[2,3,5,7,11,13,17,19,23,29,31,37,41]
+    }
+testKeys = sorted(testSets.keys())
