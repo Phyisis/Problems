@@ -1,4 +1,4 @@
-import time, psutil
+import time, psutil, winsound
 
 start = time.perf_counter()
 step = start
@@ -15,7 +15,8 @@ def monitor():
     global mem
     mem = psutil.Process()
 
-def maxMem():
+def maxMem():    
+    winsound.Beep(500, 500)
     return "\n" + "max memory: " + sizeof_fmt(mem.memory_info().peak_wset)
 
 def sizeof_fmt(num, suffix='B'):
