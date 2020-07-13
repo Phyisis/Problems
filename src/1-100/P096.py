@@ -1,4 +1,3 @@
-import repackage; repackage.up()
 import os
 from helpers import analytics
 analytics.monitor()

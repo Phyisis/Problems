@@ -1,25 +1,14 @@
 from itertools import compress
 from functools import lru_cache
-from math import log
-
-primeslist = None
+from math import log, gcd
+from random import randint
+from bisect import bisect
 
 def initialize(limit):
     """ Initialize prime list from other modules """
     global primeslist
-    primeslist = primes(int(limit**0.5)+1)
+    primeslist = dynamicPrimes(int(limit**0.5)+1)
     return primeslist
-
-def isPrime(n):
-    """ Test if single number is prime """
-    if n < 2:
-        return False
-    for p in primeslist:
-        if p*p > n:
-            return True
-        if n % p == 0:
-            return False
-    raise Exception("didn't generate enough primes to verify primality of ",n)
 
 def primes(n):
     """ Returns  a list of primes < n for n > 2 """
@@ -29,10 +18,55 @@ def primes(n):
             sieve[i*i//2::i] = bytearray((n-i*i-1)//(2*i)+1)
     return [2,*compress(range(3,n,2), sieve[1:])]
 
+def primesInRange(a,b):
+    a = a-1+a%2
+    if a < 2: return primes(b)
+    sieve = bytearray([True]) * (b//2)
+    for i in range(3,int(b**0.5)+1,2):
+        if sieve[i//2]:
+            sieve[i*i//2::i] = bytearray((b-i*i-1)//(2*i)+1)
+    return [*compress(range(a,b,2), sieve[a//2:])]
+
+def millerExtend(a,b):
+    a = a+1-a%2
+    return list(filter(millerRabin,range(a,b,2)))
+
+class dynamicPrimes():
+    def __init__(self,n=2):
+        self.n = n
+        self.primes = primes(n)
+    
+    def __iter__(self):
+        return iter(self.primes)
+    
+    def __len__(self):
+        return len(self.primes)
+    
+    def expect(self,n):
+        if n > self.n:
+            self.primes += millerExtend(self.n,n)
+            self.n = n
+            return self.primes
+        return self.primes
+        #return self.primes[:bisect(self.primes,n)]
+
+primeslist = dynamicPrimes()
+
+def isPrime(n):
+    """ Test if single number is prime """
+    if n < 2:
+        return False
+    for p in primeslist.expect(int(n**0.5)):
+        if p*p > n:
+            return True
+        if n % p == 0:
+            return False
+    raise Exception("didn't generate enough primes to verify primality of ",n)
+
 def factorization(n):
     """ Returns a list of the prime factorization of n """
     pf = []
-    for p in primeslist:
+    for p in primeslist.expect(int(n**0.5)):
       if p*p > n : break
       count = 0
       while not n % p:
@@ -98,10 +132,7 @@ def millerRabin(n):
 
 def testSet(n):
     if n < testKeys[-1]:
-        i = 0
-        while testKeys[i] < n:
-            i += 1
-        return testSets[testKeys[i]]
+        return testSets[testKeys[bisect(testKeys,n)]]
     t = log(n)*log(log(log(n)))
     t = max(t,3)
     return primes(int(t))
@@ -122,6 +153,72 @@ testSets = {
     3317044064679887385961980:[2,3,5,7,11,13,17,19,23,29,31,37,41]
     }
 testKeys = sorted(testSets.keys())
+
+def iroot(k, n): # assume n > 0
+    u, s, k1 = n, n+1, k-1
+    while u < s:
+        s = u
+        u = (k1 * u + n // u ** k1) // k
+    return s
+
+def ilog(b, n): # max e where b**e <= n
+    lo, blo, hi, bhi = 0, 1, 1, b
+    while bhi < n:
+        lo, blo, hi, bhi = hi, bhi, hi+hi, bhi*bhi
+    while 1 < (hi - lo):
+        mid = (lo + hi) // 2
+        bmid = blo * pow(b, (mid - lo))
+        if n < bmid: hi, bhi = mid, bmid
+        elif bmid < n: lo, blo = mid, bmid
+        else: return mid
+    if bhi == n: return hi
+    return lo
+
+def isPerfectPower(n):
+    for p in primes(ilog(2,n)):
+        x = iroot(p, n)
+        if pow(x, p) == n: return x,p
+    return n,1
+
+def pollardRho(n,x=2): #finds a factor d of n
+    g = lambda x: (pow(x,2,n)+1)%n
+    r = 1
+    while True:
+        y = x
+        for _ in range(r):
+            x = g(x)
+            d = gcd(x-y, n)
+            if d > 1:
+                return d
+        r <<= 1
+
+def brentRho(n): # returns factorization of n
+    if n == 1: return []
+    if n%2==0: return [2] + brentRho(n//2)
+    g = lambda x: (pow(x,2,n)+1)%n
+    y,c,m = randint(2,n-3),randint(1,n-3),randint(1,n-3)
+    print(y,c,m)
+    d,r,q = 1,1,1
+    while d==1:             
+        x = y
+        for _ in range(r):
+            y = g(y)
+        k = 0
+        while (k<r and d==1):
+            ys = y
+            for _ in range(min(m,r-k)):
+                y = g(y)
+                q = (q*abs(x-y))%n
+            d = gcd(q,n)
+            k += m
+        r <<= 1
+    if d==n:
+        g = lambda x: (pow(x,2,n)+c)%n
+        while True:
+            ys = g(ys)
+            d = gcd(abs(x-ys),n)
+            if d>1: break         
+    return [d] + brentRho(n//d)
 
 """
 n=2000

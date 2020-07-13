@@ -1,4 +1,3 @@
-import repackage; repackage.up()
 from helpers import analytics, primes
 from helpers.vector import vec2d,ray2d
 analytics.monitor()

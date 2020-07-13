@@ -24,7 +24,6 @@ x*(x-N)=y*(N-y)
 
 r = N/sqrt(2)
 """
-import repackage; repackage.up()
 from helpers import analytics,primes
 analytics.monitor()
 from math import ceil,prod

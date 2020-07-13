@@ -9,7 +9,6 @@ such that for every divisor d of n, d+n/d is prime.
 """ Notes:
 n must be square free, and 1 less than a prime
 """
-import repackage; repackage.up()
 import math
 from itertools import compress
 from helpers import analytics, primes

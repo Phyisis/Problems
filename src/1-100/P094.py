@@ -1,5 +1,4 @@
 #using Pell's equation
-import repackage; repackage.up()
 from helpers import analytics
 analytics.monitor()
 

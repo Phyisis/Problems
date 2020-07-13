@@ -1,4 +1,3 @@
-import repackage; repackage.up()
 from itertools import permutations
 from helpers import analytics
 analytics.monitor()

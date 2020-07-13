@@ -1,4 +1,3 @@
-import repackage; repackage.up()
 from helpers import analytics
 analytics.monitor()
 #UDDDUdddDDUDDddDdDddDDUDDdUUDd
@@ -17,7 +16,14 @@ def up(n):
 
 def main():
     i = 1
-    while up(i) < 10**15:
+    n_min = float('inf')
+    while True:
+        n = up(i)
+        if n > 10**15: break
+        p = 1
+        while True:
+            n *= 3
+               
         i += 1
     return i
 

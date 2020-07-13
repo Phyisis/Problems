@@ -10,7 +10,6 @@
 1, 3,5,7,9, 13,17,21,25, 31,37,43,49
 4n^2+6n+1, 4n^2+6n+5
 """
-import repackage; repackage.up()
 from helpers import analytics, primes
 analytics.monitor()
 

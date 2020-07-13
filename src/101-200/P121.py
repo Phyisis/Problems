@@ -1,4 +1,3 @@
-import repackage; repackage.up()
 from helpers import analytics, iterators
 analytics.monitor()
 from fractions import Fraction

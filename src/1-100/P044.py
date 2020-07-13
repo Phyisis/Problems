@@ -10,7 +10,6 @@ However, their difference, 70 − 22 = 48, is not pentagonal.
 Find the pair of pentagonal numbers, Pj and Pk, for which their sum and difference are pentagonal 
 and D = |Pk − Pj| is minimised; what is the value of D?
 """
-import repackage; repackage.up()
 from helpers import analytics
 analytics.monitor()
 

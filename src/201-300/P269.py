@@ -1,6 +1,6 @@
 # lots of code from misreading the question
 # implementation of Sturm's rule, polynomial division, derivative
-import repackage; repackage.up()
+
 from helpers import analytics,primes
 analytics.monitor()
 import random, math, itertools

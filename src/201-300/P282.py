@@ -1,4 +1,3 @@
-import repackage; repackage.up()
 from helpers import analytics,primes
 analytics.monitor()
 import numpy as np

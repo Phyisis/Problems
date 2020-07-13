@@ -1,4 +1,3 @@
-import repackage; repackage.up()
 from functools import lru_cache
 from helpers import analytics
 analytics.monitor()

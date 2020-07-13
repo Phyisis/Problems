@@ -2,7 +2,6 @@
 
 #seems like must end in 900, and therefore x ends in 30 or 70
 #min = 1.01e9, max = 1.39e9
-import repackage; repackage.up()
 from helpers import analytics
 analytics.monitor()
 

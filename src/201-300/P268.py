@@ -3,7 +3,6 @@
 # Find how many positive integers less than 10^16 are divisible 
 # by at least four distinct primes less than 100.
 
-import repackage; repackage.up()
 from helpers import analytics,primes
 analytics.monitor()
 import math, bisect, random

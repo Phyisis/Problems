@@ -1,5 +1,4 @@
 # ugly, reports incorrect length of maximum sequence, but still gives right answer
-import repackage; repackage.up()
 from helpers import analytics
 analytics.monitor()
 from fractions import Fraction

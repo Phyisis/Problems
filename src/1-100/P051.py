@@ -1,4 +1,3 @@
-import repackage; repackage.up()
 from itertools import combinations
 from helpers import analytics,primes
 analytics.monitor()

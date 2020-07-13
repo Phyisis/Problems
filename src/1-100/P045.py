@@ -11,7 +11,6 @@ h(n)=2*n**2-n
 
 Find the next triangle number that is also pentagonal and hexagonal.
 """
-import repackage; repackage.up()
 from helpers import analytics
 analytics.monitor()
 

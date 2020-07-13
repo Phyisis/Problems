@@ -6,7 +6,6 @@ the sum is therefore either 2an or 2.
 When a is odd, this is always maximised at a^2-a (as in the example with a=7), achieved for example when n=(a-1)/2; 
 when a is even, it is maximised at a^2-2a for a>2, achieved for example when n=(a-2)/2.
 """
-import repackage; repackage.up()
 from helpers import analytics, primes
 analytics.monitor()
 

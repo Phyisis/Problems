@@ -1,10 +1,11 @@
-import repackage; repackage.up()
 from helpers import analytics
 analytics.monitor()
 from itertools import combinations
 from math import comb,factorial,prod
 
 print(prod(range(10,28)))
+
+def T(r,s)
 
 
 def main():

@@ -1,5 +1,4 @@
 # find last 10 digits of 28433*(2**7830457)+1
-import repackage; repackage.up()
 from helpers import analytics
 analytics.monitor()
 

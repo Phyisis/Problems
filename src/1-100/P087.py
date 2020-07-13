@@ -1,4 +1,3 @@
-import repackage; repackage.up()
 import math, itertools
 from helpers import analytics, primes
 analytics.monitor()
