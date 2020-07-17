@@ -9,8 +9,6 @@ setuptools.setup(
     long_description="",
     long_description_content_type="text/markdown",
     url="https://github.com/Phyisis/Problems/tree/master/src/helpers",
-    #py_modules = ["helpers"],
-    #py_modules = ["analytics", "awards", "iterators", "polynomial_tools", "primes", "vector"],
     packages= setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
