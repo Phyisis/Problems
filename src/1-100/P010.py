@@ -15,10 +15,8 @@ def CheckPrime(num):
 def main(limit):
     total = 2
     n = 3
-    lastprime = 0
     while (n < limit):
         if CheckPrime(n):
-            lastprime = n
             primes.append(n)
             total += n
         n += 2
