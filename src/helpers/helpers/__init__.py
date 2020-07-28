@@ -1,1 +1,1 @@
-#from . import analytics, awards, iterators, polynomial_tools, primes, vector
+#from . import analytics, awards, iterators, polynomial_tools, primes, vector, integers

@@ -27,7 +27,7 @@ def main():
     return n-1
 
 def solve(n):
-    return (prod((2*i+1) for _,i in primes.factorization(n))+1)//2
+    return (prod((2*i+1) for _,i in primes.factorization(n).items())+1)//2
 
 
 print(main(), analytics.lap(), analytics.maxMem())

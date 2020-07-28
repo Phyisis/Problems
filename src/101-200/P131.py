@@ -2,30 +2,28 @@ from helpers import analytics, primes
 analytics.monitor()
 
 primes.initialize(10**6)
-ns = list(range(1,10000))
-
-def isCube(n):
-    return round(n**(1/3))**3 == n
-
-def isSquare(n):
-    return round(n**0.5)**2 == n
 
 def main(limit):
+    a3,b3,i = 0,1,2
     count = 0
-    for c in range(1,limit):
-        cube = c**3
-        for s in primes.divisors(c**3):
-            if not isSquare(s): continue
-            k = cube//s - round(s**0.5)
-            if k < 2: break
-            if k < limit and k == int(k) and primes.millerRabin(int(k)):
-                count += 1
+    while True:
+        x = b3-a3
+        if x > limit: break
+        if primes.isPrime(x):
+            count += 1
+        a3,b3,i = b3,i**3,i+1
     return count
 
-print(main(10**2), analytics.lap(), analytics.maxMem())
+print(main(10**6), analytics.lap(), analytics.maxMem())
 
 """
-n**3 + p * n**2 == x**3
-p == (x**3-n**3)/(n**2)
-p + n == (x**3)/n**2
+n**3 + p * n**2 == x**3 and p < 10**6
+n**3 * (p/n + 1) == x**3
+n**3 * (p+n)/n == x**3
+n * cuberoot(p+n)/cuberoot(n) = x
+let a**3 = (p+n), b**3 = n
+then p = a**3-b**3
+p = (a-b)*(a**2+a*b+b**2)
+if (a-b) is a factor of p, and p is prime, then a-b == 1
+a**3-b**3 < 10**6
 """

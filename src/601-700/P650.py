@@ -15,7 +15,7 @@ def P(A):
 def Pfac(A):
     f = {}
     for q in A:
-        for p,i in primes.factorization(q):
+        for p,i in primes.factorization(q).items():
             if p in f:
                 f[p] += i
             else:
@@ -39,7 +39,7 @@ def main(row):
 
 def divisors(n):
     divs = [1]
-    for p, e in primes.factorization(n):
+    for p, e in primes.factorization(n).items():
         divs += [x*p**k for k in range(1,e+1) for x in divs]
     return divs
 

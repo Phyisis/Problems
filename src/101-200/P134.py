@@ -1,20 +1,13 @@
-from helpers import analytics, primes
+from helpers import analytics, primes, integers
 analytics.monitor()
 from math import ceil,log10,floor
 
 limit = int(1e6)+4
 primesList = primes.primes(limit)
 
-def egcd(p,q):
-    if p == 0:
-        return (q,0,1)
-    else:
-        gcd,x,y = egcd(q%p,p)
-        return (gcd,y-(q//p)*x,x)
-
 def solve(a,b):
     m = 10**ceil(log10(a))
-    g,x,y = egcd(b,m) #base solution: x*a,m*a: b*sx + m*sy = a
+    g,x,y = integers.egcd(b,m) #base solution: x*a,m*a: b*sx + m*sy = a
     k = ceil(-x*a/m)
     return b*(x*a+k*m)
 

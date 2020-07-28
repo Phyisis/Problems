@@ -39,13 +39,10 @@ def f(n): #doesn't check for odd powers of 4k+3 primes, since we are squaring n
     if n==1:
         return 4
     c = 1
-    for p,k in primes.factorization(n):
+    for p,k in primes.factorization(n).items():
         if p%4 == 1:
             c *= (2*k+1)
     return ceil(c/2)*8-4
-
-def fc(n): #compact version
-    return ceil(prod(map(lambda p: 2*p[1]+1,filter(lambda p: p[0]%4==1,primes.factorization(n))))/2)*8-4
     
 def main2(limit):
     total = 0
@@ -115,7 +112,7 @@ def search3(s,limit):
 def main(limit):
     base = baseSolutions(limit)
     total = 0
-    M = list(filter(lambda n: all(map(lambda x: x[0]%4!=1 or x[0] == 2, primes.factorization(n))),range(1,limit//base[0]+1)))
+    M = list(filter(lambda n: all(map(lambda x: x%4!=1 or x == 2, primes.factorization(n))),range(1,limit//base[0]+1)))
     for b in base:
         for n in M:
             t = b*n

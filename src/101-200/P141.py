@@ -15,7 +15,8 @@ def isProgressive(n):
 def divisors(n,power=1):
     """ Returns an unsorted list of the divisors of n """
     divs = [1]
-    for p, e in primes.factorization(n):
+    f = primes.factorization(n)
+    for p, e in f.items():
         divs += [x*p**k for k in range(1,power*e+1) for x in divs]
     #print(n,sorted(list(filter(lambda x: x<n,divs))))
     return list(filter(lambda x: x<n,divs))

@@ -7,7 +7,7 @@ def pascal(A=[1]):
     return [1] + [A[i] + A[i+1] for i in range(len(A)-1)] + [1]
 
 def squareFree(n):
-    return all(map(lambda x: x[1] == 1,primes.factorization(n)))
+    return all(map(lambda x: x == 1,primes.factorization(n).values()))
 
 def main():
     total = 1
