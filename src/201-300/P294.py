@@ -1,6 +1,5 @@
 from helpers import analytics,primes, iterators
 analytics.monitor()
-import guppy
 
 """
 For a positive integer k, define d(k) as the sum of the digits of k in its usual decimal representation. 
