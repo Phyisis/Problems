@@ -1,0 +1,27 @@
+from helpers import analytics
+analytics.monitor()
+from itertools import combinations,permutations
+
+def isPandigital(a,b,c):
+    if sorted(str(a)+str(b)+str(c))==sorted("123456789"):
+        return True
+    return False
+
+def main():
+    digits = [1,2,3,4,5,6,7,8,9]
+    fourDigits = [int(''.join(map(str, s))) for s in permutations(digits,4)]
+    fiveDigits = [int(''.join(map(str, s))) for s in permutations(digits,5)]
+    numbers = fourDigits + fiveDigits
+    results = []
+    for a in numbers:
+        for b in range(1,1000):
+            if a % b == 0 and isPandigital(a,b,a//b) and a not in results:
+                results.append(a)
+    return sum(results)
+
+print(main(), analytics.lap(), analytics.maxMem())
+"""
+45228 
+time: 3.144772857 
+max memory: 9.3MB
+"""

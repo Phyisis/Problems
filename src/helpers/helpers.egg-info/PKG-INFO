@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: helpers
+Version: 0.0.1
+Summary: helper functions for project euler problems
+Home-page: https://github.com/Phyisis/Problems/tree/master/src/helpers
+Author: Ben Lewis
+Author-email: phyisisblue@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+
+UNKNOWN
+
